@@ -37,7 +37,9 @@
         CGFloat delta = insets.top - self.scrollView.contentInset.top;
 
         if (!self.hasCustomRefreshControl && (self.refreshControl == nil || [self.refreshControl isHidden])) {
-            [self.scrollView tly_setInsets:insets];
+            if ([[[UIDevice currentDevice] systemVersion] compare:@"11" options:NSNumericSearch] == NSOrderedAscending) {
+                [self.scrollView tly_setInsets:insets];
+            }
         }
 
         return delta;
